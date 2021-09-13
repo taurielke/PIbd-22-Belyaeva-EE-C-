@@ -1,0 +1,10 @@
+C:\Users\79876\Desktop\3 семестр\Технологии программирования\BelyaevaTank\bin\Debug\BelyaevaTank.exe.config
+C:\Users\79876\Desktop\3 семестр\Технологии программирования\BelyaevaTank\bin\Debug\BelyaevaTank.exe
+C:\Users\79876\Desktop\3 семестр\Технологии программирования\BelyaevaTank\bin\Debug\BelyaevaTank.pdb
+C:\Users\79876\Desktop\3 семестр\Технологии программирования\BelyaevaTank\obj\Debug\BelyaevaTank.csprojAssemblyReference.cache
+C:\Users\79876\Desktop\3 семестр\Технологии программирования\BelyaevaTank\obj\Debug\BelyaevaTank.FormTank.resources
+C:\Users\79876\Desktop\3 семестр\Технологии программирования\BelyaevaTank\obj\Debug\BelyaevaTank.Properties.Resources.resources
+C:\Users\79876\Desktop\3 семестр\Технологии программирования\BelyaevaTank\obj\Debug\BelyaevaTank.csproj.GenerateResource.cache
+C:\Users\79876\Desktop\3 семестр\Технологии программирования\BelyaevaTank\obj\Debug\BelyaevaTank.csproj.CoreCompileInputs.cache
+C:\Users\79876\Desktop\3 семестр\Технологии программирования\BelyaevaTank\obj\Debug\BelyaevaTank.exe
+C:\Users\79876\Desktop\3 семестр\Технологии программирования\BelyaevaTank\obj\Debug\BelyaevaTank.pdb
