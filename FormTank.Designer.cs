@@ -36,6 +36,7 @@ namespace BelyaevaTank
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
+            this.buttonCreateTank = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTanks)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,9 +53,9 @@ namespace BelyaevaTank
             // 
             this.buttonCreate.Location = new System.Drawing.Point(12, 12);
             this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(91, 39);
+            this.buttonCreate.Size = new System.Drawing.Size(273, 48);
             this.buttonCreate.TabIndex = 1;
-            this.buttonCreate.Text = "Создать";
+            this.buttonCreate.Text = "Создать бронированную машину";
             this.buttonCreate.UseVisualStyleBackColor = true;
             this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
@@ -106,11 +107,23 @@ namespace BelyaevaTank
             this.buttonDown.UseVisualStyleBackColor = true;
             this.buttonDown.Click += new System.EventHandler(this.buttonMove_Click);
             // 
+            // buttonCreateTank
+            // 
+            this.buttonCreateTank.Location = new System.Drawing.Point(304, 12);
+            this.buttonCreateTank.Name = "buttonCreateTank";
+            this.buttonCreateTank.Size = new System.Drawing.Size(154, 47);
+            this.buttonCreateTank.TabIndex = 6;
+            this.buttonCreateTank.Text = "Создать танк";
+            this.buttonCreateTank.UseVisualStyleBackColor = true;
+            this.buttonCreateTank.Click += new System.EventHandler(this.buttonCreateTank_Click);
+            // 
             // FormTank
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 721);
+
+            this.Controls.Add(this.buttonCreateTank);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonLeft);
@@ -133,6 +146,8 @@ namespace BelyaevaTank
         private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonDown;
+        private System.Windows.Forms.Button buttonCreateTank;
+
     }
 }
 
