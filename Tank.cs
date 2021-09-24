@@ -23,13 +23,11 @@ namespace BelyaevaTank
         public override void DrawTransport(Graphics g) 
         {
             Brush dopBr = new SolidBrush(DopColor);
-
             if (Tower)
             {
                 //one more additional part but upper and behind these 2 which are under
                 g.FillEllipse(dopBr, _startPosX + 31, _startPosY + 5, 45, 30);
             }
-
             base.DrawTransport(g);
 
             if (Weapon)
