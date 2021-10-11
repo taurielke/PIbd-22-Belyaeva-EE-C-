@@ -71,7 +71,6 @@ namespace BelyaevaTank
             Brush empty = new SolidBrush(Color.White);
             //track
             g.FillRectangle(mainBr, _startPosX, _startPosY + 35, 110, 30);
-            //g.FillRectangle(empty, _startPosX+1, _startPosY+36, 110+1, 30+1);
             g.FillEllipse(mainBr, _startPosX - 10, _startPosY + 35, 30, 30);
             g.FillEllipse(mainBr, _startPosX + 90, _startPosY + 35, 30, 30);
             //wheels

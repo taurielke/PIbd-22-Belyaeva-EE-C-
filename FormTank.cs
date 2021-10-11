@@ -18,11 +18,17 @@ namespace BelyaevaTank
             InitializeComponent();
         }
 
+        public void SetArmoredCar(ITransport armoredCar) 
+        {
+            this.armoredCar = armoredCar;
+            Draw();
+        }
+
         private void Draw() 
         {
             Bitmap bmp = new Bitmap(pictureBoxTanks.Width, pictureBoxTanks.Height);
             Graphics gr = Graphics.FromImage(bmp);
-            armoredCar.DrawTransport(gr);
+            armoredCar?.DrawTransport(gr);
             pictureBoxTanks.Image = bmp;
         }
 
@@ -48,16 +54,16 @@ namespace BelyaevaTank
             switch (name) 
             {
                 case "buttonUp":
-                    armoredCar.MoveTransport(Direction.Up);
+                    armoredCar?.MoveTransport(Direction.Up);
                     break;
                 case "buttonDown":
-                    armoredCar.MoveTransport(Direction.Down);
+                    armoredCar?.MoveTransport(Direction.Down);
                     break;
                 case "buttonLeft":
-                    armoredCar.MoveTransport(Direction.Left);
+                    armoredCar?.MoveTransport(Direction.Left);
                     break;
                 case "buttonRight":
-                    armoredCar.MoveTransport(Direction.Right);
+                    armoredCar?.MoveTransport(Direction.Right);
                     break;
             }
             Draw();
