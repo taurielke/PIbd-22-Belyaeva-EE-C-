@@ -122,7 +122,6 @@ namespace BelyaevaTank
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 721);
-
             this.Controls.Add(this.buttonCreateTank);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonRight);
@@ -147,7 +146,6 @@ namespace BelyaevaTank
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonDown;
         private System.Windows.Forms.Button buttonCreateTank;
-
     }
 }
 
