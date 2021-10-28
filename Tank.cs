@@ -38,5 +38,9 @@ namespace BelyaevaTank
                 g.FillRectangle(dopBr, _startPosX + 80, _startPosY + 10, 40, 5);
             }    
         }
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
+        }
     }
 }

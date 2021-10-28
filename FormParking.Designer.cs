@@ -30,8 +30,6 @@ namespace BelyaevaTank
         private void InitializeComponent()
         {
             this.pictureBoxParking = new System.Windows.Forms.PictureBox();
-            this.buttonParkArmoredCar = new System.Windows.Forms.Button();
-            this.buttonParkTank = new System.Windows.Forms.Button();
             this.takeTankAway = new System.Windows.Forms.GroupBox();
             this.buttonTakeAway = new System.Windows.Forms.Button();
             this.maskedBoxPlaceNumber = new System.Windows.Forms.MaskedTextBox();
@@ -41,6 +39,7 @@ namespace BelyaevaTank
             this.buttonAddParking = new System.Windows.Forms.Button();
             this.buttonDeleteParking = new System.Windows.Forms.Button();
             this.labelParkings = new System.Windows.Forms.Label();
+            this.buttonAddVehicle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.takeTankAway.SuspendLayout();
             this.SuspendLayout();
@@ -53,26 +52,6 @@ namespace BelyaevaTank
             this.pictureBoxParking.Size = new System.Drawing.Size(1022, 725);
             this.pictureBoxParking.TabIndex = 0;
             this.pictureBoxParking.TabStop = false;
-            // 
-            // buttonParkArmoredCar
-            // 
-            this.buttonParkArmoredCar.Location = new System.Drawing.Point(1037, 367);
-            this.buttonParkArmoredCar.Name = "buttonParkArmoredCar";
-            this.buttonParkArmoredCar.Size = new System.Drawing.Size(170, 88);
-            this.buttonParkArmoredCar.TabIndex = 1;
-            this.buttonParkArmoredCar.Text = "Припарковать бронированную машину";
-            this.buttonParkArmoredCar.UseVisualStyleBackColor = true;
-            this.buttonParkArmoredCar.Click += new System.EventHandler(this.buttonParkArmoredCar_Click);
-            // 
-            // buttonParkTank
-            // 
-            this.buttonParkTank.Location = new System.Drawing.Point(1037, 461);
-            this.buttonParkTank.Name = "buttonParkTank";
-            this.buttonParkTank.Size = new System.Drawing.Size(170, 69);
-            this.buttonParkTank.TabIndex = 2;
-            this.buttonParkTank.Text = "Припарковать танк";
-            this.buttonParkTank.UseVisualStyleBackColor = true;
-            this.buttonParkTank.Click += new System.EventHandler(this.buttonParkTank_Click);
             // 
             // takeTankAway
             // 
@@ -160,19 +139,28 @@ namespace BelyaevaTank
             this.labelParkings.TabIndex = 8;
             this.labelParkings.Text = "Парковки:";
             // 
+            // buttonAddVehicle
+            // 
+            this.buttonAddVehicle.Location = new System.Drawing.Point(1047, 404);
+            this.buttonAddVehicle.Name = "buttonAddVehicle";
+            this.buttonAddVehicle.Size = new System.Drawing.Size(160, 114);
+            this.buttonAddVehicle.TabIndex = 9;
+            this.buttonAddVehicle.Text = "Добавить бронированную машину или танк";
+            this.buttonAddVehicle.UseVisualStyleBackColor = true;
+            this.buttonAddVehicle.Click += new System.EventHandler(this.buttonAddVehicle_Click);
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 721);
+            this.Controls.Add(this.buttonAddVehicle);
             this.Controls.Add(this.labelParkings);
             this.Controls.Add(this.buttonDeleteParking);
             this.Controls.Add(this.buttonAddParking);
             this.Controls.Add(this.textBoxNewLevelName);
             this.Controls.Add(this.listBoxParkingList);
             this.Controls.Add(this.takeTankAway);
-            this.Controls.Add(this.buttonParkTank);
-            this.Controls.Add(this.buttonParkArmoredCar);
             this.Controls.Add(this.pictureBoxParking);
             this.Name = "FormParking";
             this.Text = "Парковка";
@@ -187,8 +175,6 @@ namespace BelyaevaTank
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxParking;
-        private System.Windows.Forms.Button buttonParkArmoredCar;
-        private System.Windows.Forms.Button buttonParkTank;
         private System.Windows.Forms.GroupBox takeTankAway;
         private System.Windows.Forms.Button buttonTakeAway;
         private System.Windows.Forms.MaskedTextBox maskedBoxPlaceNumber;
@@ -198,5 +184,6 @@ namespace BelyaevaTank
         private System.Windows.Forms.Button buttonAddParking;
         private System.Windows.Forms.Button buttonDeleteParking;
         private System.Windows.Forms.Label labelParkings;
+        private System.Windows.Forms.Button buttonAddVehicle;
     }
 }
