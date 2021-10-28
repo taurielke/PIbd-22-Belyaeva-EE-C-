@@ -10,51 +10,79 @@ using System.Windows.Forms;
 
 namespace BelyaevaTank
 {
-    public partial class FormParking : Form
+    public partial class FormParking : Form 
     {
-        private readonly Parking<ArmoredCar> parking;
+        private readonly BaseCollection baseCollection;
         public FormParking()
         {
             InitializeComponent();
-            parking = new Parking<ArmoredCar>(pictureBoxParking.Width, pictureBoxParking.Height);
-            Draw();
+            baseCollection = new BaseCollection(pictureBoxParking.Width, pictureBoxParking.Height);
         }
 
+        private void ReloadLevels()
+        {
+            int index = listBoxParkingList.SelectedIndex;
+            listBoxParkingList.Items.Clear();
+
+            for (int i = 0; i < baseCollection.Keys.Count; i++)
+            {
+                listBoxParkingList.Items.Add(baseCollection.Keys[i]);
+            }
+
+            if (listBoxParkingList.Items.Count > 0 && (index == -1 || index >= listBoxParkingList.Items.Count))
+            {
+                listBoxParkingList.SelectedIndex = 0;
+            }
+            else if (listBoxParkingList.Items.Count > 0 && index > -1 && index < listBoxParkingList.Items.Count)
+            {
+                listBoxParkingList.SelectedIndex = index;
+            }
+            else if (listBoxParkingList.Items.Count == 0) 
+            {
+                pictureBoxParking.Image = null;
+            }
+        }
         private void Draw()
         {
-            Bitmap bmp = new Bitmap(pictureBoxParking.Width, pictureBoxParking.Height);
-            Graphics gr = Graphics.FromImage(bmp);
-            parking.Draw(gr);
-            pictureBoxParking.Image = bmp;
-        }
-
-        private void buttonParkArmoredCar_Click(object sender, EventArgs e)
-        {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (listBoxParkingList.SelectedIndex > -1)
             {
-                var armoredCar = new ArmoredCar(100, 1000, dialog.Color);
-                if (parking + armoredCar != -1)
-                {
-                    Draw();
-                }
-                else
-                {
-                    MessageBox.Show("Парковка переполнена");
+                Bitmap bmp = new Bitmap(pictureBoxParking.Width, pictureBoxParking.Height);
+                Graphics gr = Graphics.FromImage(bmp);
+                baseCollection[listBoxParkingList.SelectedItem.ToString()].Draw(gr);
+                pictureBoxParking.Image = bmp;
+            }
+        }
+        private void buttonAddParking_Click_1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxNewLevelName.Text))
+            {
+                MessageBox.Show("Введите название парковки", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            baseCollection.AddParking(textBoxNewLevelName.Text);
+            ReloadLevels();
+        }
+        private void buttonDeleteParking_Click(object sender, EventArgs e)
+        {
+            if (listBoxParkingList.SelectedIndex > -1)
+            {
+                if (MessageBox.Show($"Удалить парковку {listBoxParkingList.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+                { 
+                    baseCollection.DelParking(listBoxParkingList.SelectedItem.ToString());
+                    ReloadLevels();
                 }
             }
         }
-
-        private void buttonParkTank_Click(object sender, EventArgs e)
+        private void buttonParkArmoredCar_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (listBoxParkingList.SelectedIndex > -1)
             {
-                ColorDialog dialogDop = new ColorDialog();
-                if (dialogDop.ShowDialog() == DialogResult.OK)
+                ColorDialog dialog = new ColorDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    var tank = new Tank(100, 1000, dialog.Color, dialogDop.Color, true, true);
-                    if (parking + tank != -1)
+                    var armoredCar = new ArmoredCar (100, 1000, dialog.Color);
+                    if (baseCollection[listBoxParkingList.SelectedItem.ToString()] + armoredCar != -1)
                     {
                         Draw();
                     }
@@ -65,12 +93,34 @@ namespace BelyaevaTank
                 }
             }
         }
-
+        private void buttonParkTank_Click(object sender, EventArgs e)
+        {
+            if (listBoxParkingList.SelectedIndex > -1)
+            {
+                ColorDialog dialog = new ColorDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    ColorDialog dialogDop = new ColorDialog();
+                    if (dialogDop.ShowDialog() == DialogResult.OK)
+                    {
+                        var tank = new Tank(100, 1000, dialog.Color, dialogDop.Color, true, true);
+                        if (baseCollection[listBoxParkingList.SelectedItem.ToString()] + tank != -1)
+                        {
+                            Draw();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Парковка переполнена");
+                        }
+                    }
+                }
+            }
+        }
         private void buttonTakeAway_Click(object sender, EventArgs e)
         {
-            if (placeNumber.Text != "") 
+            if (maskedBoxPlaceNumber.Text != "") 
             {
-                var tank = parking - Convert.ToInt32(placeNumber.Text);
+                var tank = baseCollection[listBoxParkingList.SelectedItem.ToString()] - Convert.ToInt32(maskedBoxPlaceNumber.Text);
                 if (tank != null) 
                 {
                     FormTank form = new FormTank();
@@ -79,6 +129,10 @@ namespace BelyaevaTank
                 }
                 Draw();
             }
+        }
+        private void listBoxParkingList_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            Draw();
         }
     }
 }

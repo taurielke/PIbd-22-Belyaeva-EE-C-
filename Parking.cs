@@ -10,8 +10,8 @@ namespace BelyaevaTank
 {
     public class Parking<T> where T : class, ITransport
     {
-        private readonly T[] _places; //array of objects
-
+        private readonly List<T> _places; //array of objects
+        private readonly int _maxCount;
         private readonly int pictureWidth;
         private readonly int pictureHeight;
         //size of a parking lot
@@ -19,62 +19,53 @@ namespace BelyaevaTank
         private readonly int _placeSizeHeight = 90;
         private int width;
         private int height;
-
+        
         public Parking(int picWidth, int picHeight)
         {
             width = picWidth / _placeSizeWidth;//2
             height = picHeight / _placeSizeHeight;//5
-            _places = new T[width * height];
+            _maxCount = width * height;
             pictureHeight = picHeight;
             pictureWidth = picWidth;
+            _places = new List<T>();
         }
 
         public static int operator +(Parking<T> p, T tank)
         {
-            int i = 0;
-            int j = 0;
-            while (i < p.height)
+            if (p._places.Count >= p._maxCount) 
             {
-                j = 0;
-                while (j < p.width)
-                {
-                    if (p._places[i*p.width + j] == null)
-                    {
-                        p._places[i*p.width + j] = tank;
-                        tank.SetPosition(20 + j * p._placeSizeWidth, 13 + i * p._placeSizeHeight, p.pictureWidth, p.pictureHeight);
-                        return i*p.width + j;
-                    }
-                    j++;
-                }
-                i++;
+                return -1;
             }
-            return -1;
+            p._places.Add(tank);
+            return 1;
         }
 
         public static T operator -(Parking<T> p, int index)
         {
-            if ((index >= p.width * p.height)||(p._places[index] == null))
+            if ((index >= p._maxCount) || (index < 0))
             {
                 return null;
             }
-            if (p._places[index] != null) 
-            {
-                T obj = p._places[index];
-                p._places[index] = null;
-                return obj;
-            }
-            else
-            {
-                return null;
-            }
+            T obj = p._places[index];
+            p._places.RemoveAt(index);
+            return obj;
         }
 
-        public void Draw(Graphics g) 
+        public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < _places.Length; i++)
+
+            int x = 20, y = 10;
+            for(int i = 0; i < _places.Count; ++i)
             {
+                if(i % width == 0 && i > 0)
+                {
+                    x = 20;
+                    y += 100;
+                }
+                _places[i]?.SetPosition(x, y, pictureWidth, pictureHeight);
                 _places[i]?.DrawTransport(g);
+                x += 270;
             }
         }
 
