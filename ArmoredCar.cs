@@ -11,12 +11,24 @@ namespace BelyaevaTank
     {
         protected readonly int tankWidth = 120;
         protected readonly int tankHeight = 60;
+        protected readonly char separator = ',';
 
         public ArmoredCar(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
+        }
+
+        public ArmoredCar(string info) 
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 3) 
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromArgb(Convert.ToInt32(strs[2]));
+            }
         }
 
         protected ArmoredCar(int maxSpeed, float weight, Color mainColor, int tankWidth, int tankHeight)
@@ -85,6 +97,12 @@ namespace BelyaevaTank
             //additional part for upper parts
             g.FillRectangle(empty, _startPosX + 40, _startPosY + 15, 30, 10);
 
+        }
+
+        public override string ToString()
+        {
+            string color = Convert.ToString(MainColor.ToArgb());
+            return $"{MaxSpeed}{separator}{Weight}{separator}{color}";
         }
     }
 }
