@@ -20,6 +20,20 @@ namespace BelyaevaTank
             Tower = tower;
             Weapon = weapon;
         }
+
+        public Tank(string info) : base(info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 6)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromArgb(Convert.ToInt32(strs[2]));
+                DopColor = Color.FromArgb(Convert.ToInt32(strs[3]));
+                Tower = Convert.ToBoolean(strs[4]);
+                Weapon = Convert.ToBoolean(strs[5]);
+            }
+        }
         public override void DrawTransport(Graphics g) 
         {
             Brush dopBr = new SolidBrush(DopColor);
@@ -41,6 +55,12 @@ namespace BelyaevaTank
         public void SetDopColor(Color color)
         {
             DopColor = color;
+        }
+
+        public override string ToString()
+        {
+            string color = Convert.ToString(DopColor.ToArgb());
+            return $"{base.ToString()}{separator}{color}{separator}{Tower}{separator}{Weapon}";
         }
     }
 }

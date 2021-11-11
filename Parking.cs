@@ -81,5 +81,14 @@ namespace BelyaevaTank
                 g.DrawLine(pen, i * _placeSizeWidth + 5, 5, i * _placeSizeWidth + 5, (pictureHeight / _placeSizeHeight)*_placeSizeHeight+ 5);
             }
         }
+
+        public T GetNext(int index)
+        {
+            if (index < 0 || index >= _places.Count)
+            {
+                return null;
+            }
+            return _places[index];
+        }
     }
 }
