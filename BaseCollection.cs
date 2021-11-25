@@ -51,7 +51,7 @@ namespace BelyaevaTank
             }
         }
         
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -66,31 +66,27 @@ namespace BelyaevaTank
                     ITransport vehicle = null;
                     for (int i = 0; (vehicle = level.Value.GetNext(i)) != null; i++)
                     {
-                        if (vehicle != null)
+                        if (vehicle.GetType().Name == "ArmoredCar")
                         {
-                            if (vehicle.GetType().Name == "ArmoredCar")
-                            {
-                                sw.Write($"ArmoredCar{separator}", sw);                        
-                            }
-
-                            if (vehicle.GetType().Name == "Tank")
-                            {
-                                sw.Write($"Tank{separator}", sw);                             
-                            }
-                            //Записываемые параметры
-                            sw.WriteLine(vehicle + "", sw);
+                            sw.Write($"ArmoredCar{separator}", sw);                        
                         }
+
+                        if (vehicle.GetType().Name == "Tank")
+                        {
+                            sw.Write($"Tank{separator}", sw);                             
+                        }
+                        //Записываемые параметры
+                        sw.WriteLine(vehicle + "", sw);
                     }
                 }
             }
-            return true;
         }
 
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
           
             using (StreamReader sr = new StreamReader(filename))
@@ -104,7 +100,7 @@ namespace BelyaevaTank
                     }
                     else 
                     {
-                        return false;
+                        throw new WrongFormatException();
                     }
 
                     Vehicle vehicle = null;
@@ -133,12 +129,11 @@ namespace BelyaevaTank
                         var result = parkingStages[key] + vehicle;
                         if (result == -1)
                         {
-                            return false;
+                            throw new FailedToLoadVehicleException();
                         }
                     }
                 }
             }
-            return true;
         }
     }
 }

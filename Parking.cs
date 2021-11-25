@@ -34,7 +34,7 @@ namespace BelyaevaTank
         {
             if (p._places.Count >= p._maxCount) 
             {
-                return -1;
+                throw new BaseOverflowException();
             }
             p._places.Add(tank);
             return 1;
@@ -44,7 +44,7 @@ namespace BelyaevaTank
         {
             if ((index >= p._maxCount) || (index < 0))
             {
-                return null;
+                throw new BaseNotFoundException(index);
             }
             T obj = p._places[index];
             p._places.RemoveAt(index);
@@ -61,7 +61,7 @@ namespace BelyaevaTank
                 if(i % width == 0 && i > 0)
                 {
                     x = 20;
-                    y += 100;
+                    y += 90;
                 }
                 _places[i]?.SetPosition(x, y, pictureWidth, pictureHeight);
                 _places[i]?.DrawTransport(g);
