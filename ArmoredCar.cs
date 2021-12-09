@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace BelyaevaTank
 {
-    public class ArmoredCar : Vehicle
+    public class ArmoredCar : Vehicle, IEquatable<ArmoredCar>
     {
         protected readonly int tankWidth = 120;
         protected readonly int tankHeight = 60;
@@ -103,6 +103,47 @@ namespace BelyaevaTank
         {
             string color = Convert.ToString(MainColor.ToArgb());
             return $"{MaxSpeed}{separator}{Weight}{separator}{color}";
+        }
+
+        public bool Equals(ArmoredCar other) 
+        {
+            if (other == null) 
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name) 
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed) 
+            {
+                return false;
+            }
+            if (Weight != other.Weight) 
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor) 
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null) 
+            { 
+                return false;
+            }
+            if (!(obj is ArmoredCar armoredCarObj))
+            {
+                return false;
+            }
+            else 
+            {
+                return Equals(armoredCarObj);
+            }
         }
     }
 }
