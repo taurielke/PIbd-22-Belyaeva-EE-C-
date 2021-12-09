@@ -138,6 +138,11 @@ namespace BelyaevaTank
                     logger.Warn(ex.Message, "Переполнение");
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                catch (BaseAlreadyHaveException ex) 
+                {
+                    logger.Warn(ex.Message, "Дублирование");
+                    MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 catch (Exception ex)
                 {
                     logger.Warn(ex.Message, "Неизвестная ошибка");
@@ -186,6 +191,16 @@ namespace BelyaevaTank
                     logger.Warn(ex.Message, "Неизвестная ошибка при загрузке");
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузке", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void buttonSort_Click(object sender, EventArgs e)
+        {
+            if (listBoxParkingList.SelectedIndex > -1) 
+            {
+                baseCollection[listBoxParkingList.SelectedItem.ToString()].Sort();
+                Draw();
+                logger.Info("Сортировка уровней");
             }
         }
     }

@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace BelyaevaTank
 {
-    public class Parking<T> where T : class, ITransport
+    public class Parking<T> : IEnumerator<T>, IEnumerable<T>
+        where T : class, ITransport
     {
         private readonly List<T> _places; //array of objects
         private readonly int _maxCount;
@@ -19,6 +21,10 @@ namespace BelyaevaTank
         private readonly int _placeSizeHeight = 90;
         private int width;
         private int height;
+
+        private int _currentIndex;
+        public T Current => _places[_currentIndex];
+        object IEnumerator.Current => _places[_currentIndex];
         
         public Parking(int picWidth, int picHeight)
         {
@@ -28,6 +34,7 @@ namespace BelyaevaTank
             pictureHeight = picHeight;
             pictureWidth = picWidth;
             _places = new List<T>();
+            _currentIndex = -1;
         }
 
         public static int operator +(Parking<T> p, T tank)
@@ -36,13 +43,17 @@ namespace BelyaevaTank
             {
                 throw new BaseOverflowException();
             }
+            if (p._places.Contains(tank)) 
+            {
+                throw new BaseAlreadyHaveException();
+            }
             p._places.Add(tank);
             return 1;
         }
 
         public static T operator -(Parking<T> p, int index)
         {
-            if ((index >= p._maxCount) || (index < 0))
+            if ((index >= p._maxCount) || (index < -1))
             {
                 throw new BaseNotFoundException(index);
             }
@@ -89,6 +100,30 @@ namespace BelyaevaTank
                 return null;
             }
             return _places[index];
+        }
+
+        public void Sort() => _places.Sort((IComparer<T>) new VehicleComparer());
+
+        public void Dispose() 
+        { }
+
+        public bool MoveNext() 
+        {
+            _currentIndex++;
+            return _currentIndex < _places.Count;
+        }
+
+        public void Reset() 
+        {
+            _currentIndex = -1;
+        }
+        public IEnumerator<T> GetEnumerator() 
+        {
+            return this;
+        }
+        IEnumerator IEnumerable.GetEnumerator() 
+        {
+            return this;
         }
     }
 }

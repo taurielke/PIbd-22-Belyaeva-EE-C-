@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace BelyaevaTank
 {
-    public class Tank : ArmoredCar
+    public class Tank : ArmoredCar, IEquatable<Tank>
     {
         public Color DopColor { private set; get; }
         public bool Tower { private set; get; } // наличие башни у танка
@@ -61,6 +61,43 @@ namespace BelyaevaTank
         {
             string color = Convert.ToString(DopColor.ToArgb());
             return $"{base.ToString()}{separator}{color}{separator}{Tower}{separator}{Weapon}";
+        }
+
+        public bool Equals(Tank other) 
+        {
+            if (base.Equals(other))
+            {
+                if (DopColor != other.DopColor)
+                {
+                    return false;
+                }
+                if (Tower != other.Tower)
+                {
+                    return false;
+                }
+                if (Weapon != other.Weapon)
+                {
+                    return false;
+                }
+                return true;
+            }
+            else return false;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Tank tankObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(tankObj);
+            }
         }
     }
 }

@@ -43,10 +43,11 @@ namespace BelyaevaTank
             this.buttonAddVehicle = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитькакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.печатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,7 +74,7 @@ namespace BelyaevaTank
             this.опрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonSort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.takeTankAway.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -195,7 +196,7 @@ namespace BelyaevaTank
             this.справкаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1219, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1219, 36);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -214,8 +215,25 @@ namespace BelyaevaTank
             this.toolStripSeparator2,
             this.выходToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(69, 32);
             this.файлToolStripMenuItem.Text = "&Файл";
+            // 
+            // загрузитьToolStripMenuItem
+            // 
+            this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
+            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(351, 34);
+            this.загрузитьToolStripMenuItem.Text = "Загрузить";
+            this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            this.сохранитьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("сохранитьToolStripMenuItem.Image")));
+            this.сохранитьToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            this.сохранитьToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(351, 34);
+            this.сохранитьToolStripMenuItem.Text = "&Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // создатьToolStripMenuItem
             // 
@@ -239,16 +257,6 @@ namespace BelyaevaTank
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
             this.toolStripSeparator.Size = new System.Drawing.Size(348, 6);
-            // 
-            // сохранитьToolStripMenuItem
-            // 
-            this.сохранитьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("сохранитьToolStripMenuItem.Image")));
-            this.сохранитьToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(351, 34);
-            this.сохранитьToolStripMenuItem.Text = "&Сохранить";
-            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // сохранитькакToolStripMenuItem
             // 
@@ -301,7 +309,7 @@ namespace BelyaevaTank
             this.toolStripSeparator4,
             this.выделитьвсеToolStripMenuItem});
             this.правкаToolStripMenuItem.Name = "правкаToolStripMenuItem";
-            this.правкаToolStripMenuItem.Size = new System.Drawing.Size(89, 29);
+            this.правкаToolStripMenuItem.Size = new System.Drawing.Size(89, 32);
             this.правкаToolStripMenuItem.Text = "&Правка";
             // 
             // отменадействияToolStripMenuItem
@@ -367,7 +375,7 @@ namespace BelyaevaTank
             this.настройкиToolStripMenuItem,
             this.параметрыToolStripMenuItem});
             this.сервисToolStripMenuItem.Name = "сервисToolStripMenuItem";
-            this.сервисToolStripMenuItem.Size = new System.Drawing.Size(87, 29);
+            this.сервисToolStripMenuItem.Size = new System.Drawing.Size(87, 32);
             this.сервисToolStripMenuItem.Text = "&Сервис";
             // 
             // настройкиToolStripMenuItem
@@ -391,7 +399,7 @@ namespace BelyaevaTank
             this.toolStripSeparator5,
             this.опрограммеToolStripMenuItem});
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(97, 29);
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(97, 32);
             this.справкаToolStripMenuItem.Text = "Спра&вка";
             // 
             // содержаниеToolStripMenuItem
@@ -432,18 +440,22 @@ namespace BelyaevaTank
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "txt file | *.txt";
             // 
-            // загрузитьToolStripMenuItem
+            // buttonSort
             // 
-            this.загрузитьToolStripMenuItem.Name = "загрузитьToolStripMenuItem";
-            this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(351, 34);
-            this.загрузитьToolStripMenuItem.Text = "Загрузить";
-            this.загрузитьToolStripMenuItem.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
+            this.buttonSort.Location = new System.Drawing.Point(1047, 319);
+            this.buttonSort.Name = "buttonSort";
+            this.buttonSort.Size = new System.Drawing.Size(160, 65);
+            this.buttonSort.TabIndex = 11;
+            this.buttonSort.Text = "Сортировать";
+            this.buttonSort.UseVisualStyleBackColor = true;
+            this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
             // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 721);
+            this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.buttonAddVehicle);
             this.Controls.Add(this.labelParkings);
             this.Controls.Add(this.buttonDeleteParking);
@@ -512,5 +524,6 @@ namespace BelyaevaTank
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
+        private System.Windows.Forms.Button buttonSort;
     }
 }

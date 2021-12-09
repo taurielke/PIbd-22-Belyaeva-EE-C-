@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Collections;
 using System.IO;
 
 namespace BelyaevaTank
@@ -50,21 +53,20 @@ namespace BelyaevaTank
                 return null;
             }
         }
-        
+
         public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
                 File.Delete(filename);
-            }   
+            }
             using (StreamWriter sw = new StreamWriter(filename))
             {
                 sw.WriteLine($"BaseCollection", sw);       
                 foreach (var level in parkingStages)
                 {
                     sw.WriteLine($"Base{separator}{level.Key}", sw);
-                    ITransport vehicle = null;
-                    for (int i = 0; (vehicle = level.Value.GetNext(i)) != null; i++)
+                    foreach (ITransport vehicle in level.Value)
                     {
                         if (vehicle.GetType().Name == "ArmoredCar")
                         {
